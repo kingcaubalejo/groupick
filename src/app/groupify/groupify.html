@@ -1,0 +1,171 @@
+<div class="geo-page">
+  <div class="geo-card">
+    <div class="geo-titlebar">
+      <marquee class="geo-marquee" scrollamount="4">
+        &#9733; &#9733; &#9733; WELCOME TO GROUPIFY!!! &#9733; PASTE YOUR
+        NAMES AND HIT SHUFFLE &#9733; BEST VIEWED IN NETSCAPE 4.0 &#9733;
+        &#9733; &#9733;
+      </marquee>
+    </div>
+
+    <header class="geo-header">
+      <h1 class="geo-logo">
+        <span class="rainbow">~</span>
+        <span class="glow">Groupify</span>
+        <span class="rainbow">~</span>
+      </h1>
+      <p class="geo-tagline">
+        <span class="blink">NEW!</span>
+        &nbsp;Paste your list, shuffle into groups, share the link.
+      </p>
+    </header>
+
+    <div class="geo-panel">
+      <div class="geo-row">
+        <label class="geo-label" for="names">
+          <span>&#128221; Names.txt</span>
+        </label>
+        <div class="geo-row-actions">
+          <input
+            #csvInput
+            type="file"
+            accept=".csv,text/csv"
+            (change)="onCsvSelected($event)"
+            hidden
+          />
+          <button
+            type="button"
+            class="geo-linkbtn"
+            (click)="csvInput.click()"
+          >
+            [ Import .csv ]
+          </button>
+          <button type="button" class="geo-linkbtn" (click)="clear()">
+            [ Clear ]
+          </button>
+        </div>
+      </div>
+      <textarea
+        id="names"
+        class="geo-textarea"
+        rows="12"
+        [ngModel]="rawInput()"
+        (ngModelChange)="rawInput.set($event)"
+        placeholder="Ana Cruz&#10;Miguel Torres&#10;Priya Singh..."
+      ></textarea>
+      <div class="geo-count">
+        &#128200; {{ nameCount() }} name{{ nameCount() === 1 ? '' : 's' }}
+      </div>
+    </div>
+
+    <div class="geo-panel">
+      <label class="geo-label">
+        <span>&#128736; Group size</span>
+      </label>
+
+      <div class="geo-tabs">
+        <button
+          type="button"
+          class="geo-tab"
+          [class.active]="mode() === 'per_group'"
+          (click)="setMode('per_group')"
+        >
+          names per group
+        </button>
+        <button
+          type="button"
+          class="geo-tab"
+          [class.active]="mode() === 'num_groups'"
+          (click)="setMode('num_groups')"
+        >
+          number of groups
+        </button>
+      </div>
+
+      <div class="geo-stepper">
+        <button type="button" class="geo-btn geo-btn-round" (click)="step(-1)">
+          &laquo; &minus;
+        </button>
+        <span class="geo-number">{{ size() }}</span>
+        <button type="button" class="geo-btn geo-btn-round" (click)="step(1)">
+          + &raquo;
+        </button>
+      </div>
+
+      @if (summary()) {
+        <p class="geo-summary">{{ summary() }}</p>
+      }
+    </div>
+
+    <div class="geo-actions">
+      <button type="button" class="geo-btn geo-btn-primary" (click)="shuffle()">
+        &#127920; SHUFFLE GROUPS!! &#127920;
+      </button>
+      <button
+        type="button"
+        class="geo-btn geo-btn-share"
+        (click)="shareLink()"
+        [disabled]="nameCount() === 0"
+      >
+        &#128279; Share link
+      </button>
+      <button
+        type="button"
+        class="geo-btn geo-btn-short"
+        (click)="shortUrl()"
+        [disabled]="nameCount() === 0 || shareStatus() === 'shortening'"
+      >
+        &#9986; Short URL
+      </button>
+      @if (shareStatus() === 'copied') {
+        <span class="geo-share-msg blink">&#9989; LINK COPIED!</span>
+      } @else if (shareStatus() === 'error') {
+        <span class="geo-share-msg">&#10060; copy failed &mdash; URL updated</span>
+      } @else if (shareStatus() === 'shortening') {
+        <span class="geo-share-msg blink">&#9203; shortening...</span>
+      } @else if (shareStatus() === 'short_copied') {
+        <span class="geo-share-msg blink">&#9989; SHORT URL COPIED!</span>
+      } @else if (shareStatus() === 'short_error') {
+        <span class="geo-share-msg">&#10060; is.gd unreachable</span>
+      }
+    </div>
+
+    @if (groups().length > 0) {
+      <div class="geo-panel geo-results">
+        <h2 class="geo-results-title">
+          <span class="blink">*</span> YOUR GROUPS
+          <span class="blink">*</span>
+          <span class="geo-results-count">
+            &nbsp;({{ groups().length }})
+          </span>
+        </h2>
+        <cdk-virtual-scroll-viewport
+          itemSize="210"
+          class="geo-groups-viewport"
+        >
+          <div
+            *cdkVirtualFor="let group of groups(); let i = index"
+            class="geo-group-card"
+          >
+            <div class="geo-group-header">&#127775; GROUP {{ i + 1 }}</div>
+            <ol class="geo-group-list">
+              @for (name of group; track $index) {
+                <li>{{ name }}</li>
+              }
+            </ol>
+          </div>
+        </cdk-virtual-scroll-viewport>
+      </div>
+    }
+
+    <footer class="geo-footer">
+      <hr class="geo-hr" />
+      <p>
+        &copy; 2026 GROUPIFY.NET &middot;
+        <span class="visitors">visitors: 00042</span> &middot;
+        <a href="#">sign my guestbook</a>
+      </p>
+      <p class="uc">&#9888; UNDER CONSTRUCTION &#9888;</p>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+<div class="ns-window">
+  <!-- Title bar -->
+  <div class="ns-titlebar">
+    <span class="ns-titlebar-icon">N</span>
+    <span class="ns-titlebar-text">Netscape - [Groupify: Group Randomizer]</span>
+    <div class="ns-titlebar-buttons">
+      <button class="ns-tb-btn" title="Minimize">_</button>
+      <button class="ns-tb-btn" title="Maximize">&#9744;</button>
+      <button class="ns-tb-btn ns-tb-close" title="Close">&times;</button>
+    </div>
+  </div>
+
+  <!-- Menu bar -->
+  <div class="ns-menubar">
+    <span class="ns-menu"><u>F</u>ile</span>
+    <span class="ns-menu"><u>E</u>dit</span>
+    <span class="ns-menu"><u>V</u>iew</span>
+    <span class="ns-menu"><u>G</u>o</span>
+    <span class="ns-menu"><u>B</u>ookmarks</span>
+    <span class="ns-menu"><u>O</u>ptions</span>
+    <span class="ns-menu"><u>D</u>irectory</span>
+    <span class="ns-menu"><u>W</u>indow</span>
+    <span class="ns-menu ns-menu-right"><u>H</u>elp</span>
+  </div>
+
+  <!-- Navigation toolbar -->
+  <div class="ns-toolbar">
+    <button class="ns-nav-btn" title="Back" (click)="goBack()">
+      <span class="ns-nav-icon">&#9664;</span>
+      <span class="ns-nav-lbl">Back</span>
+    </button>
+    <button class="ns-nav-btn" title="Forward" (click)="goForward()">
+      <span class="ns-nav-icon">&#9654;</span>
+      <span class="ns-nav-lbl">Forward</span>
+    </button>
+    <button class="ns-nav-btn" title="Reload" (click)="reload()">
+      <span class="ns-nav-icon">&#8635;</span>
+      <span class="ns-nav-lbl">Reload</span>
+    </button>
+    <button class="ns-nav-btn" title="Home" (click)="goHome()">
+      <span class="ns-nav-icon">&#8962;</span>
+      <span class="ns-nav-lbl">Home</span>
+    </button>
+    <button class="ns-nav-btn" title="Search">
+      <span class="ns-nav-icon">&#128269;</span>
+      <span class="ns-nav-lbl">Search</span>
+    </button>
+    <button class="ns-nav-btn" title="Guide">
+      <span class="ns-nav-icon">&#128213;</span>
+      <span class="ns-nav-lbl">Guide</span>
+    </button>
+    <button class="ns-nav-btn" title="Print">
+      <span class="ns-nav-icon">&#128424;</span>
+      <span class="ns-nav-lbl">Print</span>
+    </button>
+    <button class="ns-nav-btn" title="Security">
+      <span class="ns-nav-icon">&#128274;</span>
+      <span class="ns-nav-lbl">Security</span>
+    </button>
+    <button class="ns-nav-btn" title="Stop">
+      <span class="ns-nav-icon">&#9724;</span>
+      <span class="ns-nav-lbl">Stop</span>
+    </button>
+
+    <div class="ns-throbber" title="Netscape">N</div>
+  </div>
+
+  <!-- Location bar (editable, navigates the router) -->
+  <form class="ns-locationbar" (ngSubmit)="submitUrl()">
+    <label class="ns-loc-label">Location:</label>
+    <input
+      type="text"
+      class="ns-loc-input"
+      [ngModel]="urlBarValue()"
+      (ngModelChange)="urlBarValue.set($event); loadError.set(null)"
+      name="url"
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <button type="submit" class="ns-loc-go">Go!</button>
+  </form>
+  @if (loadError()) {
+    <div class="ns-loc-error">&#9888; {{ loadError() }}</div>
+  }
+
+  <!-- Content viewport with flanking ads -->
+  <div class="ns-viewport">
+    <!-- Left ads -->
+    <aside class="ns-ads ns-ads-left">
+      <a class="ad ad-visitor" routerLink="/win-a-free-ipod">
+        <div class="ad-hdr blink">&#127881; CONGRATULATIONS! &#127881;</div>
+        <div class="ad-big">You are our</div>
+        <div class="ad-huge">1,000,000<sup>th</sup></div>
+        <div class="ad-big">visitor!!!</div>
+        <div class="ad-cta">CLICK HERE TO CLAIM</div>
+      </a>
+
+      <a class="ad ad-monkey" routerLink="/punch-the-monkey">
+        <div class="ad-hdr">PUNCH THE MONKEY!</div>
+        <div class="ad-mono">&#128018;</div>
+        <div class="ad-cta blink">WIN $20 &raquo;</div>
+      </a>
+
+      <a class="ad ad-ram" routerLink="/download-more-ram">
+        <div class="ad-hdr">SLOW COMPUTER?</div>
+        <div class="ad-txt">Download more RAM &mdash; <strong>FREE!</strong></div>
+        <div class="ad-progress"><span></span></div>
+        <div class="ad-cta">Install now</div>
+      </a>
+
+      <a class="ad ad-hot" routerLink="/hot-widgets">
+        <div class="ad-hdr blink">HOT WIDGETS</div>
+        <div class="ad-txt">in your area want to <em>refactor</em>!</div>
+        <div class="ad-cta">CLICK TO MEET</div>
+      </a>
+    </aside>
+
+    <!-- Main content column -->
+    <main class="ns-content">
+      <router-outlet />
+    </main>
+
+    <!-- Right ads -->
+    <aside class="ns-ads ns-ads-right">
+      <a class="ad ad-netscape" routerLink="/get-netscape">
+        <div class="ad-hdr">Best viewed in</div>
+        <div class="ad-nsn">N</div>
+        <div class="ad-txt">Netscape 4.0<br />or better</div>
+        <div class="ad-cta">Get Netscape Now!</div>
+      </a>
+
+      <a class="ad ad-webring" routerLink="/webring">
+        <div class="ad-hdr">90's Web Ring</div>
+        <div class="ad-txt">You are site #42</div>
+        <div class="ad-ring">
+          <span>&laquo; Prev</span>
+          <span>Random</span>
+          <span>Next &raquo;</span>
+        </div>
+      </a>
+
+      <a class="ad ad-uc" routerLink="/under-construction">
+        <div class="ad-uc-tape">
+          &#9888; UNDER CONSTRUCTION &#9888;
+        </div>
+        <div class="ad-txt">Site coming soon!<br />Please excuse the mess.</div>
+        <div class="ad-mono">&#128736;</div>
+      </a>
+
+      <a class="ad ad-fp" routerLink="/made-with-frontpage">
+        <div class="ad-hdr">Proudly made with</div>
+        <div class="ad-fp-logo">FrontPage &#39;98</div>
+        <div class="ad-cta">Learn more</div>
+      </a>
+    </aside>
+  </div>
+
+  <!-- Status bar -->
+  <div class="ns-statusbar">
+    <div class="ns-status-key">&#128274;</div>
+    <div class="ns-status-msg">Document: Done</div>
+    <div class="ns-status-progress">
+      <div class="ns-status-bar-fill"></div>
+    </div>
+    <div class="ns-status-online" title="Online">&#128225;</div>
+  </div>
+</div>

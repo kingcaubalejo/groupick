@@ -1,48 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/bulma/sass/utilities/initial-variables.sass';
-@import '../node_modules/bulma/bulma.sass';
 
-html {
-    width:100%;
-    height: 100%;
-    display: table;
+html, body { height: 100%; margin: 0; }
+
+app-root, app-layout {
+  display: block;
+  min-height: 100vh;
 }
 
-body {
-    width:100%;
-    display:table-cell;
-}
+app-groupify { display: block; height: 100%; }
 
-html, body {
-    // margin: 20px 0px 0px 0px;
-    margin: 0px;
-    padding: 0px;
-}
-
-.footer {
-    position: inherit;
-    width: 100%;
-    padding-bottom: 0 !important;
-    font-size: 14px;
-}
-
-.card {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    .card-header {
-        background-color: #003366;
-    }
-    
-    footer {
-        button {
-            background-color: #003366 !important;
-        }
-    }
-}
-
-nav, th {
-    background-color: #003366 !important;
-}
-
-html, footer {
-    background-color: whitesmoke !important;
+#display_name {
+  transition: font-size 0.3s ease;
 }

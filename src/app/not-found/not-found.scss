@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  background: #ffffff;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+  min-height: 100%;
+}
+
+.nf-page {
+  max-width: 720px;
+  margin: 0;
+  padding: 1.5rem 2rem;
+  line-height: 1.4;
+}
+
+.nf-title {
+  font-size: 2rem;
+  margin: 0 0 0.5rem;
+  color: #000080;
+}
+
+.nf-hr {
+  border: 0;
+  border-top: 3px double #000080;
+  margin: 1rem 0;
+}
+
+.nf-lead { font-size: 1rem; margin: 0.5rem 0; }
+
+.nf-url {
+  background: #ffffe0;
+  border: 1px solid #808080;
+  padding: 6px 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  color: #000;
+  margin: 0.5rem 0 1rem;
+}
+
+.nf-tips {
+  margin: 0.5rem 0 1rem 1.5rem;
+  padding: 0;
+  li { margin: 0.25rem 0; }
+}
+
+a {
+  color: #0000ee;
+  &:visited { color: #551a8b; }
+  &:hover { color: #ff00ff; }
+}
+
+.nf-sig {
+  font-size: 0.85rem;
+  color: #666;
+}

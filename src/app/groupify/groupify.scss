@@ -1,0 +1,409 @@
+/* --- 90s Geocities revival --- */
+
+$hot-pink: #ff00ff;
+$cyan: #00ffff;
+$yellow: #ffff00;
+$lime: #00ff00;
+$purple: #6a0dad;
+$blue: #0000ee;
+$black: #000;
+$white: #fff;
+$paper: #ffffe0;
+
+:host {
+  display: block;
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard', cursive, sans-serif;
+  color: $black;
+}
+
+.geo-page {
+  min-height: 100%;
+  padding: 1.5rem 1rem 3rem;
+
+  /* Tiled starburst background using conic + linear gradients (no image needed) */
+  background-color: #008080; /* classic teal */
+  background-image:
+    radial-gradient(circle at 25% 25%, $yellow 2px, transparent 3px),
+    radial-gradient(circle at 75% 75%, $hot-pink 2px, transparent 3px),
+    radial-gradient(circle at 75% 25%, $cyan 2px, transparent 3px),
+    radial-gradient(circle at 25% 75%, $lime 2px, transparent 3px);
+  background-size: 40px 40px;
+}
+
+.geo-card {
+  max-width: 780px;
+  margin: 0 auto;
+  background: $paper;
+  border: 4px ridge $hot-pink;
+  padding: 1rem 1.25rem 1.5rem;
+  box-shadow:
+    6px 6px 0 $black,
+    12px 12px 0 $purple;
+}
+
+/* Title bar / marquee */
+.geo-titlebar {
+  background: linear-gradient(90deg, $blue 0%, $purple 50%, $hot-pink 100%);
+  border: 2px inset #ccc;
+  padding: 4px 6px;
+  margin-bottom: 0.75rem;
+}
+.geo-marquee {
+  color: $yellow;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+/* Header */
+.geo-header {
+  text-align: center;
+  padding: 0.5rem 0 1rem;
+  border-bottom: 3px dashed $hot-pink;
+  margin-bottom: 1rem;
+}
+.geo-logo {
+  font-family: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.rainbow {
+  background: linear-gradient(
+    90deg,
+    #f00,
+    #f80,
+    #ff0,
+    #0f0,
+    #0ff,
+    #00f,
+    #f0f
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 0 0.25rem;
+}
+.glow {
+  color: $hot-pink;
+  text-shadow:
+    0 0 4px $yellow,
+    2px 2px 0 $black,
+    4px 4px 0 $cyan;
+}
+.geo-tagline {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+}
+
+/* Blink + shake */
+.blink {
+  animation: blink 1s steps(2, start) infinite;
+  color: $hot-pink;
+  font-weight: bold;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+/* Panels */
+.geo-panel {
+  background: $white;
+  border: 3px ridge $cyan;
+  padding: 0.75rem 1rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.geo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+.geo-row-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+.geo-label {
+  font-weight: bold;
+  color: $purple;
+  font-size: 1.05rem;
+}
+
+.geo-linkbtn {
+  background: none;
+  border: none;
+  color: $blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0;
+
+  &:hover { color: $hot-pink; }
+  &:visited { color: $purple; }
+}
+
+/* Textarea — Win95 inset */
+.geo-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 3px inset #c0c0c0;
+  background: $paper;
+  padding: 8px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  color: $black;
+  resize: vertical;
+  min-height: 220px;
+}
+.geo-textarea:focus {
+  outline: 2px dashed $hot-pink;
+  outline-offset: 2px;
+}
+
+.geo-count {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: $purple;
+  font-weight: bold;
+}
+
+/* Tabs */
+.geo-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 0.5rem 0 0.75rem;
+  border-bottom: 3px double $purple;
+}
+.geo-tab {
+  background: #d0d0d0;
+  border: 2px outset #eee;
+  border-bottom: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: $black;
+  position: relative;
+  top: 3px;
+
+  &:hover { background: $yellow; }
+  &.active {
+    background: $hot-pink;
+    color: $white;
+    border-color: $hot-pink;
+    font-weight: bold;
+  }
+}
+
+/* Stepper */
+.geo-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+}
+.geo-number {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  min-width: 3rem;
+  text-align: center;
+  color: $blue;
+  background: $paper;
+  border: 3px inset #c0c0c0;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Buttons — chunky beveled */
+.geo-btn {
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  border: 3px outset #eee;
+  background: linear-gradient(180deg, #f8f8f8 0%, #c0c0c0 100%);
+  color: $black;
+  padding: 6px 14px;
+
+  &:active {
+    border-style: inset;
+    background: linear-gradient(0deg, #f8f8f8 0%, #c0c0c0 100%);
+  }
+}
+.geo-btn-round {
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 1rem;
+}
+.geo-btn-primary {
+  background: linear-gradient(180deg, $lime 0%, #009900 100%);
+  color: $black;
+  font-size: 1.2rem;
+  padding: 14px 28px;
+  border: 4px outset $lime;
+  text-shadow: 1px 1px 0 $white;
+  letter-spacing: 1px;
+
+  &:hover {
+    background: linear-gradient(180deg, $yellow 0%, #ff8800 100%);
+    color: $hot-pink;
+  }
+}
+
+.geo-summary {
+  text-align: center;
+  margin: 0.5rem 0 0;
+  color: $purple;
+  font-style: italic;
+}
+
+.geo-actions {
+  text-align: center;
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.geo-btn-share {
+  background: linear-gradient(180deg, $cyan 0%, $blue 100%);
+  color: $yellow;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: 3px outset $cyan;
+  text-shadow: 1px 1px 0 $black;
+  letter-spacing: 1px;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(180deg, $hot-pink 0%, $purple 100%);
+    color: $yellow;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.geo-btn-short {
+  background: linear-gradient(180deg, $yellow 0%, #ff8800 100%);
+  color: $purple;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: 3px outset $yellow;
+  text-shadow: 1px 1px 0 $white;
+  letter-spacing: 1px;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(180deg, $hot-pink 0%, $purple 100%);
+    color: $yellow;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.geo-share-msg {
+  font-weight: bold;
+  color: $purple;
+  background: $yellow;
+  padding: 4px 10px;
+  border: 2px dashed $hot-pink;
+}
+
+/* Results */
+.geo-results {
+  border-color: $lime;
+  background: linear-gradient(180deg, $paper 0%, #e0ffe0 100%);
+}
+.geo-results-title {
+  text-align: center;
+  color: $purple;
+  font-family: 'Impact', sans-serif;
+  letter-spacing: 2px;
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+.geo-groups-viewport {
+  height: 60vh;
+  min-height: 320px;
+  border: 3px inset #c0c0c0;
+  background: $paper;
+}
+.geo-group-card {
+  height: 200px;
+  box-sizing: border-box;
+  margin: 0 0 10px;
+  background: $white;
+  border: 3px ridge $purple;
+  padding: 0.5rem 0.75rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.geo-group-header {
+  background: $hot-pink;
+  color: $yellow;
+  font-weight: bold;
+  text-align: center;
+  padding: 4px;
+  margin: -0.5rem -0.75rem 0.5rem;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 $black;
+  flex: 0 0 auto;
+}
+.geo-group-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-family: 'Courier New', Courier, monospace;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  li { padding: 2px 0; }
+}
+.geo-results-count {
+  color: $blue;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.geo-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: $purple;
+
+  a { color: $blue; }
+  a:hover { color: $hot-pink; }
+}
+.geo-hr {
+  border: none;
+  border-top: 2px dashed $hot-pink;
+  margin: 0 0 0.5rem;
+}
+.visitors {
+  background: $black;
+  color: $lime;
+  font-family: 'Courier New', monospace;
+  padding: 1px 6px;
+  letter-spacing: 2px;
+}
+.uc {
+  font-weight: bold;
+  color: #c60;
+  background: repeating-linear-gradient(
+    45deg,
+    $yellow 0 10px,
+    $black 10px 20px
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: 'Impact', sans-serif;
+  letter-spacing: 2px;
+  font-size: 1rem;
+}
