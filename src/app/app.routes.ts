@@ -10,7 +10,7 @@ export const routes: Routes = [
       {
         path: 'groupify',
         loadComponent: () =>
-          import('./groupify/groupify').then((m) => m.Groupify),
+          import('./groupify/groupify').then((m) => m.Groupick),
       },
       {
         path: '**',

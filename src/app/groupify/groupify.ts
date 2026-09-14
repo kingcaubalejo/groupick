@@ -16,7 +16,7 @@ interface SharedState {
   templateUrl: './groupify.html',
   styleUrl: './groupify.scss',
 })
-export class Groupify {
+export class Groupick {
   readonly shareStatus = signal<
     'idle' | 'copied' | 'error' | 'shortening' | 'short_copied' | 'short_error'
   >('idle');
